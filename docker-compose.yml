@@ -1,5 +1,5 @@
 # The standard now
-version: '2'
+version: '3'
 
 # All of the images/containers compose will deal with
 services:
@@ -19,6 +19,8 @@ services:
 
     # the default command unless we pass it one
     command: nodemon .
+    depends_on:
+      - mysqlDb
 
   # ADD HERE.  This is what our MySQL service shall be known as
   mysqlDb:
@@ -39,8 +41,5 @@ services:
 
     # Create a separate volume on our machine to map to the container's default mysql data directory
     volumes:
-      - strongloopDev:/var/lib/mysql
+      - ./strongloopDev:/var/lib/mysql
 
-# These must be declared to be used above
-volumes:
-  strongloopDev:
